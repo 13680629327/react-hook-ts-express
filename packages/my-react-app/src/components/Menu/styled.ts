@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const MenuWrapper = styled.div`
   width: 100%;
@@ -19,4 +19,4 @@ export const MenuWrapper = styled.div`
       font-weight: 600;
     }
   }
-`
+`;

@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import { RegisterWrapper, RegisterContainer } from './styled'
+import React, { useState } from 'react';
+import { RegisterWrapper, RegisterContainer } from './styled';
 import { Form, Input, Button, message, InputNumber, Radio, RadioChangeEvent } from 'antd';
-import { IUser } from '@/common/types/interface'
-import { register } from "@/api/register";
-import { useHistory } from "react-router-dom";
-
+import { IUser } from '@/common/types/interface';
+import { register } from '@/api/register';
+import { useHistory } from 'react-router-dom';
 
 const Login: React.FC = () => {
-  const history = useHistory()
+  const history = useHistory();
   const [form] = Form.useForm<IUser>();
   const [userInfo, setUserInfo] = useState<IUser>({
     userName: '',
@@ -16,28 +15,27 @@ const Login: React.FC = () => {
     sex: '男',
     age: '',
     mobile: '',
-    mailbox: ''
-  })
+    mailbox: '',
+  });
   const onChangeAge = (value: number) => {
-    const params = {...userInfo}
-    params.age = value
-    setUserInfo(params)
-  }
+    const params = { ...userInfo };
+    params.age = value;
+    setUserInfo(params);
+  };
   const onChangeSex = (e: RadioChangeEvent) => {
-    const params = {...userInfo}
-    params.sex = e.target.value
-    setUserInfo(params)
-  }
+    const params = { ...userInfo };
+    params.sex = e.target.value;
+    setUserInfo(params);
+  };
 
   const onFinish = async (form: IUser) => {
     try {
-      const res:any = await register(form)
+      const res: any = await register(form);
       message.success(res.message);
       setTimeout(() => {
-        history.push('/login')
-      }, 1000)
-    } catch (error) {
-    }
+        history.push('/login');
+      }, 1000);
+    } catch (error) {}
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -85,7 +83,9 @@ const Login: React.FC = () => {
                   if (!value || getFieldValue('password') === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                  return Promise.reject(
+                    new Error('The two passwords that you entered do not match!'),
+                  );
                 },
               }),
             ]}
@@ -98,8 +98,8 @@ const Login: React.FC = () => {
             rules={[{ required: true, message: 'Please select your sex!' }]}
           >
             <Radio.Group onChange={onChangeSex} value={userInfo.sex}>
-              <Radio value='男'>男</Radio>
-              <Radio value='女'>女</Radio>
+              <Radio value="男">男</Radio>
+              <Radio value="女">女</Radio>
             </Radio.Group>
           </Form.Item>
           <Form.Item
@@ -121,7 +121,7 @@ const Login: React.FC = () => {
             name="mailbox"
             rules={[
               { required: false, message: 'Please input your mailbox!' },
-              { type: 'email',  message: 'The input is not valid E-mail!'},
+              { type: 'email', message: 'The input is not valid E-mail!' },
             ]}
           >
             <Input />
@@ -134,7 +134,7 @@ const Login: React.FC = () => {
         </Form>
       </RegisterContainer>
     </RegisterWrapper>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

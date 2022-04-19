@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const SystemFrameWrapper = styled.div`
   .system-frame-main {
@@ -20,4 +20,4 @@ export const SystemFrameWrapper = styled.div`
     margin: 5px;
     /* background-color: #fff; */
   }
-`
+`;

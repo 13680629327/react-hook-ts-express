@@ -3,7 +3,7 @@ export interface IRequest {
   code: number;
   data: any;
   success: boolean;
-  message: string
+  message: string;
 }
 
 // 用户信息
@@ -14,17 +14,17 @@ export interface IUser {
   mobile: number | string;
   mailbox: string;
   password: string;
-  [props: string]: any
+  [props: string]: any;
 }
 
 // reducer
 export interface IReducerAction {
   type: string;
-  params?: any
+  params?: any;
 }
 
 // createContext
 export interface ICreateContext {
-  store: any,
-  dispatch: any
+  store: any;
+  dispatch: any;
 }
