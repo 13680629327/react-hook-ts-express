@@ -4083,6 +4083,11 @@ escodegen@^2.0.0:
   optionalDependencies:
     source-map "~0.6.1"
 
+eslint-config-ali@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.npmmirror.com/eslint-config-ali/-/eslint-config-ali-14.0.0.tgz#60bf707d0d2bfcb05bf788933eadedc710e7f094"
+  integrity sha512-F6tRRru2qJAsKGS7mPAWmOlHghcCloWpyQmEcYUVEgdoM2F/ujc18njrai+p6f58YqDUkFb/TwFMEbtQlbANLA==
+
 eslint-config-react-app@^7.0.0:
   version "7.0.1"
   resolved "https://registry.npmmirror.com/eslint-config-react-app/-/eslint-config-react-app-7.0.1.tgz#73ba3929978001c5c86274c017ea57eb5fa644b4"
