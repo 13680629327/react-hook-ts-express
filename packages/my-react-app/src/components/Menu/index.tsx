@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { Menu } from 'antd';
-import { MenuWrapper } from './styled'
-import logoIcon from '@/assets/img/logo.svg'
-import { getMenuList } from '@/api/menu'
-import { MenuInfo } from 'rc-menu/lib/interface'
-import { useHistory } from "react-router-dom";
+import { MenuWrapper } from './styled';
+import logoIcon from '@/assets/img/logo.svg';
+import { getMenuList } from '@/api/menu';
+import { MenuInfo } from 'rc-menu/lib/interface';
+import { useHistory } from 'react-router-dom';
 
 const { SubMenu } = Menu;
 
@@ -16,38 +16,38 @@ interface IMenu {
 }
 
 const MenuComps: React.FC = () => {
-  const history = useHistory()
-  const [menuData, setMenuData] = useState<Array<IMenu>>([]) 
-  const handleClick = ({key}: MenuInfo) => {
-    history.push(key)
-  }
+  const history = useHistory();
+  const [menuData, setMenuData] = useState<Array<IMenu>>([]);
+  const handleClick = ({ key }: MenuInfo) => {
+    history.push(key);
+  };
   // 获取菜单数据
   const getMenuData = async () => {
-    const res = await getMenuList()
-    setMenuData(res.data)
-  }
+    const res = await getMenuList();
+    setMenuData(res.data);
+  };
   useEffect(() => {
-    getMenuData()
-  }, [])
+    getMenuData();
+  }, []);
 
   // 渲染不含children的目录
   const renderNoChildMenu = (item: IMenu) => {
-    return <Menu.Item key={item.path}>{ item.title }</Menu.Item>
-  }
+    return <Menu.Item key={item.path}>{item.title}</Menu.Item>;
+  };
   // 渲染含有children的目录
   const renderChildMenu = (item: IMenu) => {
-    return <SubMenu key={item.path} title={item.title}>
-      { 
-        item.children.map((child) => {
-          return renderMenu(child)
-        })
-      }
-    </SubMenu>
-  }
+    return (
+      <SubMenu key={item.path} title={item.title}>
+        {item.children.map((child) => {
+          return renderMenu(child);
+        })}
+      </SubMenu>
+    );
+  };
   // 渲染菜单
   const renderMenu = (item: IMenu) => {
-    return item.children.length ? renderChildMenu(item) : renderNoChildMenu(item)
-  }
+    return item.children.length ? renderChildMenu(item) : renderNoChildMenu(item);
+  };
   return (
     <MenuWrapper className="menu-wrapper">
       <div className="menu-header">
@@ -72,10 +72,10 @@ const MenuComps: React.FC = () => {
           </Menu.ItemGroup>
         </SubMenu>
         <Menu.Item key="12">Option 12</Menu.Item> */}
-        { menuData.map((item) => renderMenu(item)) }
+        {menuData.map((item) => renderMenu(item))}
       </Menu>
     </MenuWrapper>
-  )
-}
+  );
+};
 
-export default MenuComps
+export default MenuComps;

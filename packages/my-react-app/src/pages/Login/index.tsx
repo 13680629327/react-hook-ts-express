@@ -1,9 +1,9 @@
-import React, {useContext} from "react";
-import { LoginWrapper, LoginContainer } from './styled'
+import React, { useContext } from 'react';
+import { LoginWrapper, LoginContainer } from './styled';
 import { Form, Input, Button, message } from 'antd';
-import { login } from '@/api/login'
-import { UserContext } from '@/store/user'
-import { useHistory } from "react-router-dom";
+import { login } from '@/api/login';
+import { UserContext } from '@/store/user';
+import { useHistory } from 'react-router-dom';
 
 interface ILogin {
   userName: string;
@@ -11,22 +11,21 @@ interface ILogin {
 }
 
 const Login: React.FC = () => {
-  const history = useHistory()
-  const { dispatch } = useContext(UserContext)
+  const history = useHistory();
+  const { dispatch } = useContext(UserContext);
   const onFinish = async (form: ILogin) => {
     try {
-      const res: any = await login(form)
+      const res: any = await login(form);
       message.success(res.message);
-      localStorage.setItem('userInfo', JSON.stringify(res.data))
+      localStorage.setItem('userInfo', JSON.stringify(res.data));
       dispatch({
         type: 'updata',
-        params: res.data
-      })
+        params: res.data,
+      });
       setTimeout(() => {
-        history.push('/home')
-      }, 1000)
-    } catch (error) {
-    }
+        history.push('/home');
+      }, 1000);
+    } catch (error) {}
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -35,8 +34,8 @@ const Login: React.FC = () => {
 
   // 注册
   const onRegister = () => {
-    history.push('/register')
-  }
+    history.push('/register');
+  };
 
   return (
     <LoginWrapper>
@@ -48,7 +47,7 @@ const Login: React.FC = () => {
           wrapperCol={{ span: 18 }}
           initialValues={{
             userName: 'Fengchengzhi',
-            password: '123456'
+            password: '123456',
           }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
@@ -74,12 +73,14 @@ const Login: React.FC = () => {
             </Button>
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 10, span: 14 }}>
-            <Button type="link" onClick={onRegister}>注册</Button>
+            <Button type="link" onClick={onRegister}>
+              注册
+            </Button>
           </Form.Item>
         </Form>
       </LoginContainer>
     </LoginWrapper>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

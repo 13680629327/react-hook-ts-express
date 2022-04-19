@@ -9,12 +9,12 @@ const routes: any = [
   {
     path: '/login',
     component: Login,
-    routes: []
+    routes: [],
   },
   {
     path: '/register',
     component: Register,
-    routes: []
+    routes: [],
   },
   {
     path: '/',
@@ -24,20 +24,20 @@ const routes: any = [
       {
         path: '/home',
         component: Home,
-        routes: []
+        routes: [],
       },
       {
         path: '/user',
         component: User,
-        routes: []
+        routes: [],
       },
       {
         path: '/staff',
         component: Staff,
-        routes: []
+        routes: [],
       },
-    ]
-  }
-]
+    ],
+  },
+];
 
-export default routes
+export default routes;

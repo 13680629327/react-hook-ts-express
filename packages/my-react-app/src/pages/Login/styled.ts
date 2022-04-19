@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 import logo from '../../assets/img/login.jpg';
 
 export const LoginWrapper = styled.div`
@@ -10,7 +10,7 @@ export const LoginWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 export const LoginContainer = styled.div<{ width?: string; backgroundColor?: string }>`
   width: ${(props) => props.width || '400px'};
   background-color: ${(props) => props.backgroundColor || '#fff'};
@@ -25,4 +25,4 @@ export const LoginContainer = styled.div<{ width?: string; backgroundColor?: str
   form {
     padding: 30px;
   }
-`
+`;

@@ -1,5 +1,5 @@
-import React from "react";
-import { MyCardWrapper, MyCardHeader, MyCardMain } from "./styled";
+import React from 'react';
+import { MyCardWrapper, MyCardHeader, MyCardMain } from './styled';
 
 interface IMyCard {
   children?: React.ReactNode;
@@ -13,23 +13,17 @@ interface IMyCard {
 }
 
 const MyCard: React.FC<IMyCard> = (props) => {
-  const { border = true, showHeader = true, borderColor = '#fbf1f1' } = props
+  const { border = true, showHeader = true, borderColor = '#fbf1f1' } = props;
   return (
     <MyCardWrapper>
       <MyCardHeader border={border} show={showHeader} borderColor={borderColor}>
-        <div className="title">
-          { props.title }
-        </div>
-        <div className="header-right">
-        { props.headerRightSlot }
-        </div>
+        <div className="title">{props.title}</div>
+        <div className="header-right">{props.headerRightSlot}</div>
       </MyCardHeader>
-      <MyCardMain padding={props.mPadding}>
-        { props.children }
-      </MyCardMain>
-      { props.footer }
+      <MyCardMain padding={props.mPadding}>{props.children}</MyCardMain>
+      {props.footer}
     </MyCardWrapper>
-  )
-}
+  );
+};
 
-export default MyCard
+export default MyCard;
