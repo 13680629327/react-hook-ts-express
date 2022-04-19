@@ -1,0 +1,32 @@
+[
+  {
+    "userName": "Fengchengzhi",
+    "userId": "4995a50b-54c1-47e8-aca2-d70cfa6afb94",
+    "staffData": [
+      {
+        "id": "4995a50b-54c1-35e8-aca2-d70cfa6afb24",
+        "name": "张三",
+        "phone": "13680629327",
+        "age": null,
+        "perDiem": 400,
+        "project": "果园"
+      },
+      {
+        "id": "2395a50b-54c1-47e8-aca2-d70cfa6abb34",
+        "name": "李四",
+        "phone": "13680629327",
+        "age": null,
+        "perDiem": 400,
+        "project": "私人房"
+      },
+      {
+        "id": "4995a50b-54c1-47e8-aca2-d70cfa6afa14",
+        "name": "王五",
+        "phone": "13680629327",
+        "age": null,
+        "perDiem": 400,
+        "project": "私人房"
+      }
+    ]
+  }
+]

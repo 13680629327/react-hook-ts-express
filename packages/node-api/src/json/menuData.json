@@ -1,0 +1,46 @@
+[
+  {
+    "title": "首页",
+    "icon": null,
+    "path": "/home",
+    "children": []
+  },
+  {
+    "title": "个人信息",
+    "icon": null,
+    "path": "/user",
+    "children": []
+  },
+  {
+    "title": "员工管理",
+    "icon": null,
+    "path": "/staff",
+    "children": []
+  },
+  {
+    "title": "Option",
+    "icon": null,
+    "path": "/option",
+    "children": [
+      {
+        "title": "Option 1",
+        "icon": null,
+        "path": "/option1",
+        "children": []
+      },
+      {
+        "title": "Option 2",
+        "icon": null,
+        "path": "/option2",
+        "children": [
+          {
+            "title": "Option 3",
+            "icon": null,
+            "path": "/option3",
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
+]
