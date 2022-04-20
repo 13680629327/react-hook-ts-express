@@ -9,10 +9,10 @@ const SystemFrame: React.FC = (props: any) => {
     <SystemFrameWrapper className="system-frame-wrapper">
       <div className="system-frame-main">
         <div className="system-frame-main-left">
-          <MenuComps></MenuComps>
+          <MenuComps />
         </div>
         <div className="system-frame-main-right">
-          <HeaderComps></HeaderComps>
+          <HeaderComps />
           <div className="page-main">{renderRoutes(props.route.routes)}</div>
         </div>
       </div>
