@@ -35,7 +35,9 @@ const User: React.FC = () => {
         params: res.data,
       });
       setRequiredMarkType(false);
-    } catch (error) {}
+    } catch (error) {
+      // 
+    }
   };
 
   const onFinishFailed = (errorInfo: any) => {

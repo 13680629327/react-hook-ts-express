@@ -27,17 +27,17 @@ const Login: React.FC = () => {
     params.sex = e.target.value;
     setUserInfo(params);
   };
-
-  const onFinish = async (form: IUser) => {
+  const onFinish = async (formData: IUser) => {
     try {
-      const res: any = await register(form);
+      const res: any = await register(formData);
       message.success(res.message);
       setTimeout(() => {
         history.push('/login');
       }, 1000);
-    } catch (error) {}
+    } catch (error) {
+      // 
+    }
   };
-
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
   };

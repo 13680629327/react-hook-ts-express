@@ -30,8 +30,8 @@ const Login: React.FC = () => {
     }
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
+  const onFinishFailed = () => {
+    // console.log('Failed:', errorInfo);
   };
 
   // 注册
