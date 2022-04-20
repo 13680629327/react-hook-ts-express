@@ -12,8 +12,15 @@
     "dev:api": "yarn workspace node-api start"
   },
   "devDependencies": {
+    "f2elint": "2.2.1"
   },
   "resolutions": {
     "@types/react": "17.0.39"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "f2elint commit-file-scan",
+      "commit-msg": "f2elint commit-msg-scan"
+    }
   }
 }

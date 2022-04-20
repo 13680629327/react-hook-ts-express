@@ -10,14 +10,14 @@ const { SubMenu } = Menu;
 
 interface IMenu {
   title: string;
-  children: Array<IMenu>;
+  children: IMenu[];
   path: string;
   icon?: string;
 }
 
 const MenuComps: React.FC = () => {
   const history = useHistory();
-  const [menuData, setMenuData] = useState<Array<IMenu>>([]);
+  const [menuData, setMenuData] = useState<IMenu[]>([]);
   const handleClick = ({ key }: MenuInfo) => {
     history.push(key);
   };
