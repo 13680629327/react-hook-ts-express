@@ -19,7 +19,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "f2elint commit-file-scan",
+      "pre-commit": "yarn workspace my-react-app f2elint-scan",
       "commit-msg": "f2elint commit-msg-scan"
     }
   }
