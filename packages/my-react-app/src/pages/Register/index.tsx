@@ -17,12 +17,12 @@ const Login: React.FC = () => {
     mobile: '',
     mailbox: '',
   });
-  const onChangeAge = (value: number) => {
+  const onAgeChange = (value: number) => {
     const params = { ...userInfo };
     params.age = value;
     setUserInfo(params);
   };
-  const onChangeSex = (e: RadioChangeEvent) => {
+  const onSexChange = (e: RadioChangeEvent) => {
     const params = { ...userInfo };
     params.sex = e.target.value;
     setUserInfo(params);
@@ -97,7 +97,7 @@ const Login: React.FC = () => {
             name="sex"
             rules={[{ required: true, message: 'Please select your sex!' }]}
           >
-            <Radio.Group onChange={onChangeSex} value={userInfo.sex}>
+            <Radio.Group onChange={onSexChange} value={userInfo.sex}>
               <Radio value="男">男</Radio>
               <Radio value="女">女</Radio>
             </Radio.Group>
@@ -107,7 +107,7 @@ const Login: React.FC = () => {
             name="age"
             rules={[{ required: false, message: 'Please input your age!' }]}
           >
-            <InputNumber min={1} max={200} onChange={onChangeAge} />
+            <InputNumber min={1} max={200} onChange={onAgeChange} />
           </Form.Item>
           <Form.Item
             label="Mobile"

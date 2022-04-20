@@ -1964,19 +1964,10 @@
     "@types/history" "^4.7.11"
     "@types/react" "*"
 
-"@types/react@*":
-  version "18.0.5"
-  resolved "https://registry.npmmirror.com/@types/react/-/react-18.0.5.tgz#1a4d4b705ae6af5aed369dec22800b20f89f5301"
-  integrity sha512-UPxNGInDCIKlfqBrm8LDXYWNfLHwIdisWcsH5GpMyGjhEDLFgTtlRBaoWuCua9HcyuE0rMkmAeZ3FXV1pYLIYQ==
-  dependencies:
-    "@types/prop-types" "*"
-    "@types/scheduler" "*"
-    csstype "^3.0.2"
-
-"@types/react@^17", "@types/react@^17.0.39":
-  version "17.0.44"
-  resolved "https://registry.npmmirror.com/@types/react/-/react-17.0.44.tgz#c3714bd34dd551ab20b8015d9d0dbec812a51ec7"
-  integrity sha512-Ye0nlw09GeMp2Suh8qoOv0odfgCoowfM/9MG6WeRD60Gq9wS90bdkdRtYbRkNhXOpG4H+YXGvj4wOWhAC0LJ1g==
+"@types/react@*", "@types/react@17.0.39", "@types/react@^17":
+  version "17.0.39"
+  resolved "https://registry.npmmirror.com/@types/react/-/react-17.0.39.tgz#d0f4cde092502a6db00a1cded6e6bf2abb7633ce"
+  integrity sha512-UVavlfAxDd/AgAacMa60Azl7ygyQNRwC/DsHZmKgNvPmRR5p70AJ5Q9EAmL2NWOJmeV+vVUI4IAP7GZrN8h8Ug==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -4083,6 +4074,11 @@ escodegen@^2.0.0:
   optionalDependencies:
     source-map "~0.6.1"
 
+eslint-config-ali@^14.0.0:
+  version "14.0.0"
+  resolved "https://registry.npmmirror.com/eslint-config-ali/-/eslint-config-ali-14.0.0.tgz#60bf707d0d2bfcb05bf788933eadedc710e7f094"
+  integrity sha512-F6tRRru2qJAsKGS7mPAWmOlHghcCloWpyQmEcYUVEgdoM2F/ujc18njrai+p6f58YqDUkFb/TwFMEbtQlbANLA==
+
 eslint-config-react-app@^7.0.0:
   version "7.0.1"
   resolved "https://registry.npmmirror.com/eslint-config-react-app/-/eslint-config-react-app-7.0.1.tgz#73ba3929978001c5c86274c017ea57eb5fa644b4"
@@ -5014,10 +5010,21 @@ http-proxy-agent@^4.0.1:
     agent-base "6"
     debug "4"
 
-http-proxy-middleware@^2.0.3, http-proxy-middleware@^2.0.4:
+http-proxy-middleware@^2.0.3:
   version "2.0.4"
   resolved "https://registry.npmmirror.com/http-proxy-middleware/-/http-proxy-middleware-2.0.4.tgz#03af0f4676d172ae775cb5c33f592f40e1a4e07a"
   integrity sha512-m/4FxX17SUvz4lJ5WPXOHDUuCwIqXLfLHs1s0uZ3oYjhoXlx9csYxaOa0ElDEJ+h8Q4iJ1s+lTMbiCa4EXIJqg==
+  dependencies:
+    "@types/http-proxy" "^1.17.8"
+    http-proxy "^1.18.1"
+    is-glob "^4.0.1"
+    is-plain-obj "^3.0.0"
+    micromatch "^4.0.2"
+
+http-proxy-middleware@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.npmmirror.com/http-proxy-middleware/-/http-proxy-middleware-2.0.5.tgz#2d12fb41a414889372643a1f54279a2f6470aa93"
+  integrity sha512-ORErEaxkjyrhifofwCuQttHPUSestLtiPDwV0qQOFB0ww6695H953wIGRnkakw1K+GAP+t8/RPbfDB75RFL4Fg==
   dependencies:
     "@types/http-proxy" "^1.17.8"
     http-proxy "^1.18.1"
@@ -7396,6 +7403,11 @@ prepend-http@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmmirror.com/prepend-http/-/prepend-http-2.0.0.tgz#e92434bfa5ea8c19f41cdfd401d741a3c819d897"
   integrity sha512-ravE6m9Atw9Z/jjttRUZ+clIXogdghyZAuWJ3qEzjT+jI/dL1ifAqhZeC5VHzQp1MSt1+jxKkFNemj/iO7tVUA==
+
+prettier@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.npmmirror.com/prettier/-/prettier-2.6.2.tgz#e26d71a18a74c3d0f0597f55f01fb6c06c206032"
+  integrity sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew==
 
 pretty-bytes@^5.3.0, pretty-bytes@^5.4.1:
   version "5.6.0"

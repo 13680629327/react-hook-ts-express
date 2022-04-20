@@ -3,8 +3,8 @@ import { MyCardWrapper, MyCardHeader, MyCardMain } from './styled';
 
 interface IMyCard {
   children?: React.ReactNode;
-  title?: string | React.ReactNode;
-  headerRightSlot?: string | React.ReactNode;
+  title?: React.ReactNode;
+  headerRightSlot?: React.ReactNode;
   border?: boolean;
   borderColor?: string;
   showHeader?: boolean;
