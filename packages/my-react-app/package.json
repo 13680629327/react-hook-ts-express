@@ -48,7 +48,8 @@
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.24",
     "eslint-config-ali": "^14.0.0",
-    "http-proxy-middleware": "^2.0.5"
+    "http-proxy-middleware": "^2.0.5",
+    "prettier": "^2.6.2"
   },
   "husky": {
     "hooks": {
