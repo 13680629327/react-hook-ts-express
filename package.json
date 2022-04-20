@@ -12,6 +12,8 @@
     "dev:api": "yarn workspace node-api start"
   },
   "devDependencies": {
-    "@types/react": "^17.0.39"
+  },
+  "resolutions": {
+    "@types/react": "17.0.39"
   }
 }
