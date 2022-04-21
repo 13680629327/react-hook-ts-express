@@ -20,6 +20,7 @@ stages:
         commands:
           - npm i -g yarn
           - yarn
+          - npm run build
         artifacts:
           - name: BUILD_ARTIFACT
             path:
