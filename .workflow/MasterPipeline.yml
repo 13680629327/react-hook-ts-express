@@ -42,6 +42,26 @@ stages:
         dependArtifact: output
         version: 1.0.0.0
         autoIncrement: true
+  - name: stage-f6efa6ba
+    displayName: 未命名
+    strategy: naturally
+    trigger: auto
+    executor: []
+    steps:
+      - step: deploy@agent
+        name: deploy_agent
+        displayName: 主机部署
+        hostGroupID: backend-server
+        deployArtifact:
+          - source: artifact
+            name: output
+            target: ~/gitee_go/deploy
+            artifactRepository: release
+            artifactName: output
+            artifactVersion: latest
+        script: |-
+          # 请在此输入部署脚本，如启动Java应用如下
+          # nohup java -jar test.jar > nohup.out &
 permissions:
   - role: admin
     members: []
