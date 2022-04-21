@@ -43,7 +43,7 @@ stages:
         version: 1.0.0.0
         autoIncrement: true
   - name: stage-f6efa6ba
-    displayName: 未命名
+    displayName: 部署
     strategy: naturally
     trigger: auto
     executor: []
@@ -62,12 +62,25 @@ stages:
         script: |-
           # 请在此输入部署脚本，如启动Java应用如下
           # nohup java -jar test.jar > nohup.out &
+          cd ~/gitee_go/deploy
+          tar -zxvf output.tar.gz -C ~/web/react-app
+  - name: stage-0fba412a
+    displayName: 未命名
+    strategy: naturally
+    trigger: auto
+    executor: []
+    steps:
+      - step: shell@agent
+        name: execute_shell
+        displayName: node部署
+        hostGroupID: gitee-go
+        script: |-
+          # 请在此输入您想执行的脚本
           cd ~/web/koa-app/react-koa-app
           git pull
           yarn
           npm run product
-          cd ~/gitee_go/deploy
-          tar -zxvf output.tar.gz -C ~/web/react-app
+        notify: []
 permissions:
   - role: admin
     members: []
