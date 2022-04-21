@@ -16,14 +16,14 @@ stages:
       - step: build@nodejs
         name: build_nodejs
         displayName: Nodejs 构建
-        nodeVersion: 14.16.0
+        nodeVersion: 16.14.2
         commands:
           - npm i -g yarn
           - yarn
         artifacts:
           - name: BUILD_ARTIFACT
             path:
-              - ./dist
+              - ./packages/my-react-app/build
       - step: publish@general_artifacts
         name: publish_general_artifacts
         displayName: 上传制品
