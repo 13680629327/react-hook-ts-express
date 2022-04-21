@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "nodemon src/index.js",
-    "product": "pm2 src/index.js"
+    "product": "pm2 restart src/index.js"
   },
   "nodemonConfig": {
     "ignore": [
