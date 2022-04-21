@@ -9,9 +9,12 @@
     "uuid": "^8.3.2"
   },
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "nodemon src/index.js",
+    "product": "pm2 src/index.js"
   },
   "nodemonConfig": {
-    "ignore": ["src/json/*"]
+    "ignore": [
+      "src/json/*"
+    ]
   }
 }

@@ -10,7 +10,8 @@
   "scripts": {
     "dev:react": "yarn workspace my-react-app start",
     "dev:api": "yarn workspace node-api start",
-    "build": "yarn workspace my-react-app build"
+    "build": "yarn workspace my-react-app build",
+    "product": "yarn workspace node-api product"
   },
   "devDependencies": {
     "f2elint": "2.2.1"
