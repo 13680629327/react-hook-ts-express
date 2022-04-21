@@ -64,23 +64,16 @@ stages:
           # nohup java -jar test.jar > nohup.out &
           cd ~/gitee_go/deploy
           tar -zxvf output.tar.gz -C ~/web/react-app
-  - name: stage-0fba412a
-    displayName: 未命名
-    strategy: naturally
-    trigger: auto
-    executor: []
-    steps:
       - step: shell@agent
         name: execute_shell
-        displayName: node部署
-        hostGroupID: gitee-go
+        displayName: Shell 脚本执行
+        hostGroupID: backend-server
         script: |-
           # 请在此输入您想执行的脚本
           cd ~/web/koa-app/react-koa-app
           git pull
           yarn
           npm run product
-        notify: []
 permissions:
   - role: admin
     members: []
