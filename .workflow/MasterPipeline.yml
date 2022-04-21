@@ -64,6 +64,10 @@ stages:
           # nohup java -jar test.jar > nohup.out &
           cd ~/gitee_go/deploy
           tar -zxvf output.tar.gz -C ~/web/react-app
+          cd ~/web/koa-app/react-koa-app
+          git pull
+          yarn
+          npm run product
 permissions:
   - role: admin
     members: []
