@@ -9,14 +9,17 @@
   ],
   "scripts": {
     "dev:react": "yarn workspace my-react-app start",
-    "dev:api": "yarn workspace node-api start"
+    "dev:api": "yarn workspace node-api start",
+    "build": "yarn workspace my-react-app build"
   },
   "devDependencies": {
     "f2elint": "2.2.1"
   },
   "resolutions": {
-    "@types/react": "17.0.39"
+    "@types/react": "17.0.39",
+    "eslint": "7.15.0"
   },
+  
   "husky": {
     "hooks": {
       "pre-commit": "yarn workspace my-react-app f2elint-scan",
