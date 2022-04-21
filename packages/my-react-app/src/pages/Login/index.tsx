@@ -25,11 +25,13 @@ const Login: React.FC = () => {
       setTimeout(() => {
         history.push('/home');
       }, 1000);
-    } catch (error) {}
+    } catch (error) {
+      //
+    }
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
+  const onFinishFailed = () => {
+    // console.log('Failed:', errorInfo);
   };
 
   // 注册

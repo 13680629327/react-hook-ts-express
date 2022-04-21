@@ -13,22 +13,22 @@ const Home: React.FC = () => {
       <MyCard title="默认card" headerRightSlot={more}>
         this is Home
       </MyCard>
-      <div style={{ height: '5px' }}></div>
+      <div style={{ height: '5px' }} />
 
       <MyCard border={false} title="tititle 没有 border">
         this is Home
       </MyCard>
-      <div style={{ height: '5px' }}></div>
+      <div style={{ height: '5px' }} />
 
       <MyCard borderColor="red" title="设置 border 颜色">
         this is Home
       </MyCard>
-      <div style={{ height: '5px' }}></div>
+      <div style={{ height: '5px' }} />
 
       <MyCard showHeader={false} title="不展示 Header">
         不展示 Header
       </MyCard>
-      <div style={{ height: '5px' }}></div>
+      <div style={{ height: '5px' }} />
 
       <MyCard title="有 footer" footer={<div style={{ background: 'yellow' }}>我是footer</div>}>
         this is Home

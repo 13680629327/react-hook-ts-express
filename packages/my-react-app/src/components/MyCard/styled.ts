@@ -20,5 +20,5 @@ export const MyCardHeader = styled.div<{ border: boolean; show: boolean; borderC
   }
 `;
 export const MyCardMain = styled.div<{ padding?: string }>`
-  padding: ${(props) => props.padding || '10px'};
+  padding: ${(props) => props?.padding ?? '10px'};
 `;
