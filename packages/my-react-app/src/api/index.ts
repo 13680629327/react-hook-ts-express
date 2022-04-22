@@ -26,7 +26,7 @@ http.interceptors.response.use(
       window.location.href = '/login';
     } else if (data.code !== 200 || !data.success) {
       message.error(data.message);
-      return Promise.reject({ ...data });
+      return Promise.reject(new Error({ ...data }));
     } else {
       return data;
     }
