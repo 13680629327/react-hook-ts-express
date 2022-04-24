@@ -53,6 +53,7 @@ const MenuComps: React.FC = () => {
       <div className="menu-header">
         <img src={logoIcon} alt="" />
         <span>工人系统</span>
+        <span />
       </div>
       <Menu
         onClick={handleClick}
