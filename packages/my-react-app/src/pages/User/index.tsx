@@ -60,7 +60,7 @@ const User: React.FC = () => {
   </div>
   
   return (
-    <MyCard title="默认card" headerRightSlot={more}>
+    <MyCard title="个人信息" headerRightSlot={more}>
       <UserWrapper>
         <Form
           name="basic"
