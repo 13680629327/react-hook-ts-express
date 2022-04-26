@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { LoginWrapper, LoginContainer } from './styled';
 import { Form, Input, Button, message } from 'antd';
 import { login } from '@/api/login';
 import { UserContext } from '@/store/user';
-import { useHistory } from 'react-router-dom';
+import { UserStoreActionType } from '@/common/types/enum';
 
 interface ILogin {
   userName: string;
@@ -19,7 +20,7 @@ const Login: React.FC = () => {
       message.success(res.message);
       localStorage.setItem('userInfo', JSON.stringify(res.data));
       dispatch({
-        type: 'updata',
+        type: UserStoreActionType.SetData,
         params: res.data,
       });
       setTimeout(() => {

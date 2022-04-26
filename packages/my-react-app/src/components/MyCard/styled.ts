@@ -8,7 +8,7 @@ export const MyCardWrapper = styled.div`
 `;
 export const MyCardHeader = styled.div<{ border: boolean; show: boolean; borderColor: string }>`
   width: 100%;
-  height: 40px;
+  height: 50px;
   display: ${(props) => (props.show ? 'flex' : 'none')};
   align-items: center;
   justify-content: space-between;
