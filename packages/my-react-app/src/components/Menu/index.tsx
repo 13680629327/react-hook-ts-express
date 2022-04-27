@@ -58,7 +58,7 @@ const MenuComps: React.FC = () => {
       <Menu
         onClick={handleClick}
         style={{ width: '100%', marginTop: '2px' }}
-        defaultSelectedKeys={['1']}
+        defaultSelectedKeys={[history.location.pathname]}
         defaultOpenKeys={[]}
         mode="inline"
       >
