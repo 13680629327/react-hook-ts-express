@@ -63,6 +63,10 @@ const Staff: React.FC = () => {
   // 删除员工
   const [selectIds, setSelectIds] = useState<React.Key[]>([]);
   const onDel = async (ids: React.Key[]) => {
+    if (!ids.length) {
+      message.warning('请选择要删除的员工！');
+      return;
+    }
     Modal.confirm({
       title: ids.length > 1 ? '确定要删除选择的员工？' : '确定要删除该员工？',
       onOk: async () => {
@@ -135,9 +139,9 @@ const Staff: React.FC = () => {
     //   }
     // },
   };
-  const addXML = (
+  const handleXML = (
     <>
-      <Button type="primary" onClick={onAdd}>
+      <Button type="primary" style={{ marginRight: '10px' }} onClick={onAdd}>
         新增
       </Button>
       <Button onClick={onBatchDel}>
@@ -148,7 +152,7 @@ const Staff: React.FC = () => {
 
   return (
     <>
-      <MyCard title="员工信息" headerRightSlot={addXML}>
+      <MyCard title="员工信息" headerRightSlot={handleXML}>
         <Table
           loading={loading}
           rowSelection={{

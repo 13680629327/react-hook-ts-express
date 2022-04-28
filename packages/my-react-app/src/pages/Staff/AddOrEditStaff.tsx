@@ -23,7 +23,7 @@ const AddOrEditStaff: React.FC<IAddOrEditStaffProps> = (props) => {
   const { visible, data, onClose, onConfirm } = props;
 
   useEffect(() => {
-    if (data && data.id) {
+    if (data?.id) {
       form.setFieldsValue({ ...data });
     }
   }, [data]);
@@ -36,7 +36,7 @@ const AddOrEditStaff: React.FC<IAddOrEditStaffProps> = (props) => {
     try {
       setIsconfirm(true);
       const res: any =
-        data && data.id ? await editStaff({ id: data.id, ...formData }) : await addStaff(formData);
+      data?.id ? await editStaff({ id: data.id, ...formData }) : await addStaff(formData);
       message.success(res.message);
       onConfirm();
     } catch (error) {
