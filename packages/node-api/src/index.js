@@ -9,6 +9,9 @@ const staff = require('./router/staff');
 // 登录状态
 global.isLogin = false
 
+// 用户id
+global.userId = null
+
 // 解析 application/json 数据
 app.use(express.json())
 // 解析 application/x-www-form-urlencoded 数据
@@ -21,6 +24,7 @@ app.all('*', (req, res, next) => {
   const unlimitedUrl = ['/api/login', '/api/register']
   if (!unlimitedUrl.includes(req.url)) {
     if (!global.isLogin) {
+      global.userId = null
       return res.json({
         code: 304,
         data: null,

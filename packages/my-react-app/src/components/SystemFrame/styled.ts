@@ -18,6 +18,7 @@ export const SystemFrameWrapper = styled.div`
   }
   .page-main {
     margin: 5px;
-    /* background-color: #fff; */
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
   }
 `;
