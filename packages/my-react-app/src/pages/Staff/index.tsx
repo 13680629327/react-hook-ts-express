@@ -4,69 +4,66 @@ import { Button, message, Table, Modal } from 'antd';
 import { IStaff } from '@/common/types/interface';
 import { getStaffList, delStaff } from '@/api/staff';
 import AddOrEditStaff from './AddOrEditStaff';
+import { ColumnsType } from 'antd/lib/table';
 
 const Staff: React.FC = () => {
   const [selectionType] = useState<'checkbox'>('checkbox');
-  const [loading, setLoading] = useState<boolean>(false)
-  const [tableData, setTableData] = useState<IStaff[]>([])
+  const [loading, setLoading] = useState<boolean>(false);
+  const [tableData, setTableData] = useState<IStaff[]>([]);
 
   // 获取员工列表
   const getStaffData = async () => {
     try {
-      setLoading(true)
-      const res = await getStaffList()
-      setTableData(res.data)
+      setLoading(true);
+      const res = await getStaffList();
+      setTableData(res.data);
     } catch (error) {
-      // 
+      //
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-    
-  }
+  };
 
   useEffect(() => {
-    getStaffData()
-  }, [])
+    getStaffData();
+  }, []);
 
-
-  const [dialogVisible, setDialogVisible] = useState<boolean>(false)
+  const [dialogVisible, setDialogVisible] = useState<boolean>(false);
   const onAdd = () => {
-    setDialogVisible(true)
-  }
+    setDialogVisible(true);
+  };
   const onClose = () => {
-    setDialogVisible(false)
-  }
+    setDialogVisible(false);
+  };
   const onConfirm = () => {
-    setDialogVisible(false)
-    getStaffData()
-  }
+    setDialogVisible(false);
+    getStaffData();
+  };
   // 编辑员工
-  const [staffData, setStaffData] = useState<IStaff | null>(null)
+  const [staffData, setStaffData] = useState<IStaff | null>(null);
   const onEdit = (record: IStaff) => {
-    setStaffData(record)
-    setDialogVisible(true)
-  }
+    setStaffData(record);
+    setDialogVisible(true);
+  };
   useEffect(() => {
     if (!dialogVisible) {
-      setStaffData(null)
+      setStaffData(null);
     }
-  }, [dialogVisible])
+  }, [dialogVisible]);
 
   // 删除员工
   const onDel = async (ids: string[]) => {
     Modal.confirm({
       title: ids.length > 1 ? '确定要删除选择的员工？' : '确定要删除该员工？',
-      onOk: async() => {
-        const res: any = await delStaff({ids})
+      onOk: async () => {
+        const res: any = await delStaff({ ids });
         message.success(res.message);
-        getStaffData()
+        getStaffData();
       },
-      onCancel() {
-      }
-    })
-    
-  }
-  const columns = [
+      onCancel() {},
+    });
+  };
+  const columns: ColumnsType<IStaff> = [
     {
       title: '姓名',
       dataIndex: 'name',
@@ -74,7 +71,7 @@ const Staff: React.FC = () => {
     },
     {
       title: '性别',
-      dataIndex: 'sex'
+      dataIndex: 'sex',
     },
     {
       title: '日薪',
@@ -96,15 +93,19 @@ const Staff: React.FC = () => {
       title: '操作',
       width: 170,
       dataIndex: 'project',
-      render: (_: any, record: IStaff) => {
+      render: (_, record) => {
         return (
           <>
-            <Button type='link' onClick={() => onEdit(record)}>编辑</Button>
-            <Button type='link' onClick={() => onDel([record.id])}>删除</Button>
+            <Button type="link" onClick={() => onEdit(record)}>
+              编辑
+            </Button>
+            <Button type="link" onClick={() => onDel([record.id])}>
+              删除
+            </Button>
           </>
-        )
-      }
-    }
+        );
+      },
+    },
   ];
 
   const rowSelection = {
@@ -118,7 +119,11 @@ const Staff: React.FC = () => {
     //   }
     // },
   };
-  const addXML = <Button type="primary" onClick={onAdd}>新增</Button>
+  const addXML = (
+    <Button type="primary" onClick={onAdd}>
+      新增
+    </Button>
+  );
 
   return (
     <>
@@ -135,9 +140,14 @@ const Staff: React.FC = () => {
           pagination={{ pageSize: 10 }}
         />
       </MyCard>
-      <AddOrEditStaff data={staffData} visible={dialogVisible} onClose={onClose} onConfirm={onConfirm} />
+      <AddOrEditStaff
+        data={staffData}
+        visible={dialogVisible}
+        onClose={onClose}
+        onConfirm={onConfirm}
+      />
     </>
-  )
+  );
 };
 
 export default Staff;
