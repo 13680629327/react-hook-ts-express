@@ -15,7 +15,7 @@ stages:
     steps:
       - step: build@nodejs
         name: build_nodejs
-        displayName: Nodejs 构建
+        displayName: react build
         nodeVersion: 16.14.2
         commands:
           - npm i -g yarn
@@ -31,6 +31,16 @@ stages:
         dependArtifact: BUILD_ARTIFACT
         artifactName: output
         dependsOn: build_nodejs
+      - step: shell@agent
+        name: execute_shell
+        displayName: node restart
+        hostGroupID: backend-server
+        script: |-
+          # 请在此输入您想执行的脚本
+          cd ~/web/koa-app/react-koa-app
+          git pull
+          yarn
+          npm run product
   - name: release
     displayName: 发布
     strategy: naturally
@@ -64,16 +74,6 @@ stages:
           # nohup java -jar test.jar > nohup.out &
           cd ~/gitee_go/deploy
           tar -zxvf output.tar.gz -C ~/web/react-app
-      - step: shell@agent
-        name: execute_shell
-        displayName: Shell 脚本执行
-        hostGroupID: backend-server
-        script: |-
-          # 请在此输入您想执行的脚本
-          cd ~/web/koa-app/react-koa-app
-          git pull
-          yarn
-          npm run product
 permissions:
   - role: admin
     members: []
