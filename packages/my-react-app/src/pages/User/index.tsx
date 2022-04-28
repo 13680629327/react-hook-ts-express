@@ -1,64 +1,71 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from 'react';
 import { Form, Input, Button, InputNumber, Radio, RadioChangeEvent, message } from 'antd';
-import { RequiredMark } from "antd/lib/form/Form";
+import { RequiredMark } from 'antd/lib/form/Form';
 import { UserWrapper } from './styled';
 import { IUser } from '@/common/types/interface';
-import { UserStoreActionType } from "@/common/types/enum";
-import { UserContext } from '@/store/user'
-import { updateUserData } from "@/api/user";
-import MyCard from "@/components/MyCard";
-
+import { UserStoreActionType } from '@/common/types/enum';
+import { UserContext } from '@/store/user';
+import { updateUserData } from '@/api/user';
+import MyCard from '@/components/MyCard';
 
 const User: React.FC = () => {
   const [requiredMark, setRequiredMarkType] = useState<RequiredMark>(false);
-  const { store, dispatch } = useContext(UserContext)
-  const [form] = Form.useForm<IUser>()
+  const { store, dispatch } = useContext(UserContext);
+  const [form] = Form.useForm<IUser>();
 
   useEffect(() => {
-    form.setFieldsValue({...store})
-  }, [store])
+    form.setFieldsValue({ ...store });
+  }, [store]);
   // 取消修改
   const onCancelModify = () => {
-    setRequiredMarkType(false)
-    form.setFieldsValue({...store})
-  }
+    setRequiredMarkType(false);
+    form.setFieldsValue({ ...store });
+  };
   const onChangeAge = (value: number) => {
-    form.setFieldsValue({ age: value })
-  }
+    form.setFieldsValue({ age: value });
+  };
   const onChangeSex = (e: RadioChangeEvent) => {
-    form.setFieldsValue({ sex: e.target.value })
-  }
+    form.setFieldsValue({ sex: e.target.value });
+  };
   const onFinish = async (fromData: IUser) => {
     try {
-      const res: any = await updateUserData({...fromData, userId: store.userId})
+      const res: any = await updateUserData({ ...fromData, userId: store.userId });
       message.success(res.message);
       dispatch({
         type: UserStoreActionType.SetData,
-        params: res.data
-      })
-      setRequiredMarkType(false)
+        params: res.data,
+      });
+      setRequiredMarkType(false);
     } catch (error) {
       //
     }
-  }
+  };
 
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
-  }
+  };
   const onSubmit = async () => {
-    form.submit()
-  }
-  const more = <div>
-    { 
-      requiredMark 
-        ? <div>
-            <Button type="dashed" style={{'marginRight': '10px'}} onClick={onCancelModify}>取消</Button>
-            <Button type="primary" onClick={onSubmit}>提交修改</Button>
-          </div>
-        : <Button type="primary" onClick={() => setRequiredMarkType(true)}>修改个人信息</Button> 
-    }
-  </div>
-  
+    form.submit();
+  };
+  const more = (
+    <div>
+      {requiredMark ? (
+        <div>
+          <Button type="dashed" style={{ marginRight: '10px' }} onClick={onCancelModify}>
+            取消
+          </Button>
+          <Button type="primary" onClick={onSubmit}>
+            提交修改
+          </Button>
+        </div>
+      ) : (
+        <Button type="primary" onClick={() => setRequiredMarkType(true)}>
+          修改个人信息
+        </Button>
+      )}
+    </div>
+  );
+
   return (
     <MyCard title="个人信息" headerRightSlot={more}>
       <UserWrapper>
@@ -76,51 +83,50 @@ const User: React.FC = () => {
             name="userName"
             rules={[{ required: true, message: 'Please input your username!' }]}
           >
-            { requiredMark ? <Input /> : store.userName }
+            {requiredMark ? <Input /> : store.userName}
           </Form.Item>
           <Form.Item
             label="Sex"
             name="sex"
             rules={[{ required: true, message: 'Please select your sex!' }]}
           >
-            {
-              requiredMark ? 
+            {requiredMark ? (
               <Radio.Group onChange={onChangeSex} value={store.sex}>
-                <Radio value='男'>男</Radio>
-                <Radio value='女'>女</Radio>
+                <Radio value="男">男</Radio>
+                <Radio value="女">女</Radio>
               </Radio.Group>
-              : store.sex
-            }
-            
+            ) : (
+              store.sex
+            )}
           </Form.Item>
           <Form.Item
             label="Age"
             name="age"
             rules={[{ required: false, message: 'Please input your age!' }]}
           >
-            { requiredMark ? <InputNumber min={1} max={200} onChange={onChangeAge} /> : store.age }
+            {requiredMark ? <InputNumber min={1} max={200} onChange={onChangeAge} /> : store.age}
           </Form.Item>
           <Form.Item
             label="Mobile"
             name="mobile"
             rules={[{ required: false, message: 'Please input your mobile!' }]}
           >
-            { requiredMark ? <Input /> : store.mobile }
+            {requiredMark ? <Input /> : store.mobile}
           </Form.Item>
           <Form.Item
             label="Mailbox"
             name="mailbox"
             rules={[
               { required: false, message: 'Please input your mailbox!' },
-              { type: 'email',  message: 'The input is not valid E-mail!'},
+              { type: 'email', message: 'The input is not valid E-mail!' },
             ]}
           >
-            { requiredMark ? <Input /> : store.mailbox }
+            {requiredMark ? <Input /> : store.mailbox}
           </Form.Item>
         </Form>
       </UserWrapper>
     </MyCard>
-  )
-}
+  );
+};
 
-export default User
+export default User;

@@ -35,7 +35,7 @@ const Login: React.FC = () => {
         history.push('/login');
       }, 1000);
     } catch (error) {
-      // 
+      //
     }
   };
   const onFinishFailed = (errorInfo: any) => {

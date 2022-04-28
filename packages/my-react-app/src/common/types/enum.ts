@@ -1,3 +1,3 @@
 export enum UserStoreActionType {
-  SetData = 'SET_DAtA'
+  SetData = 'SET_DAtA',
 }
