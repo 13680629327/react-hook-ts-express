@@ -16,7 +16,7 @@ interface IStaff {
   phone?: string;
   age?: number;
   project?: string;
-  id?: string;
+  id?: React.Key;
 }
 const AddOrEditStaff: React.FC<IAddOrEditStaffProps> = (props) => {
   const [form] = Form.useForm<IStaff>();
@@ -28,7 +28,7 @@ const AddOrEditStaff: React.FC<IAddOrEditStaffProps> = (props) => {
     }
   }, [data]);
 
-  const [isConfirm, setIsconfirm] = useState<boolean>(false);
+  const [isConfirm, setIsconfirm] = useState(false);
   const onOk = () => {
     form.submit();
   };

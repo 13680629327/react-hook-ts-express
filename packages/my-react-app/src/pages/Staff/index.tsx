@@ -4,10 +4,10 @@ import { Button, message, Table, Modal } from 'antd';
 import { getStaffList, delStaff } from '@/api/staff';
 import AddOrEditStaff from './AddOrEditStaff';
 import { ColumnsType } from 'antd/lib/table';
-import { Key } from 'antd/lib/table/interface';
+import { TableRowSelection } from 'antd/lib/table/interface';
 
 export interface IStaff {
-  id: string;
+  id: React.Key;
   name: string;
   sex: number;
   phone?: string;
@@ -37,7 +37,7 @@ const Staff: React.FC = () => {
     getStaffData();
   }, []);
 
-  const [dialogVisible, setDialogVisible] = useState<boolean>(false);
+  const [dialogVisible, setDialogVisible] = useState(false);
   const onAdd = () => {
     setDialogVisible(true);
   };
@@ -61,8 +61,8 @@ const Staff: React.FC = () => {
   }, [dialogVisible]);
 
   // 删除员工
-  const [selectIds, setSelectIds] = useState<string[]>([]);
-  const onDel = async (ids: Key[]) => {
+  const [selectIds, setSelectIds] = useState<React.Key[]>([]);
+  const onDel = async (ids: React.Key[]) => {
     Modal.confirm({
       title: ids.length > 1 ? '确定要删除选择的员工？' : '确定要删除该员工？',
       onOk: async () => {
@@ -124,8 +124,8 @@ const Staff: React.FC = () => {
     },
   ];
 
-  const rowSelection = {
-    onChange: (selectedRowKeys: Key[]) => {
+  const rowSelection: TableRowSelection<IStaff> = {
+    onChange: (selectedRowKeys) => {
       setSelectIds(selectedRowKeys);
     },
     // getCheckboxProps: (record: DataType) => {
