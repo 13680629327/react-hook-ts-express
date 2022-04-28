@@ -2,30 +2,31 @@
   {
     "userName": "Fengchengzhi",
     "userId": "4995a50b-54c1-47e8-aca2-d70cfa6afb94",
-    "staffData": [
+    "list": [
       {
-        "id": "4995a50b-54c1-35e8-aca2-d70cfa6afb24",
-        "name": "张三",
-        "phone": "13680629327",
-        "age": null,
-        "perDiem": 400,
-        "project": "果园"
+        "id": "cd3b8ffc-6dc3-4c71-a0f0-cd07c382dc37",
+        "name": "冯成智",
+        "sex": "男",
+        "perDiem": 5,
+        "phone": "13680629327"
       },
       {
-        "id": "2395a50b-54c1-47e8-aca2-d70cfa6abb34",
+        "id": "1c6e455e-129c-4e4d-b5a3-8da0e57b2ca8",
+        "name": "张三1",
+        "sex": "男",
+        "perDiem": 300,
+        "phone": "13680629327",
+        "age": 25,
+        "project": "雅居乐"
+      },
+      {
+        "id": "5eaeafe5-5d5e-4c85-901a-595998941195",
         "name": "李四",
+        "sex": "男",
+        "perDiem": 500,
         "phone": "13680629327",
-        "age": null,
-        "perDiem": 400,
-        "project": "私人房"
-      },
-      {
-        "id": "4995a50b-54c1-47e8-aca2-d70cfa6afa14",
-        "name": "王五",
-        "phone": "13680629327",
-        "age": null,
-        "perDiem": 400,
-        "project": "私人房"
+        "age": 40,
+        "project": "果园"
       }
     ]
   }

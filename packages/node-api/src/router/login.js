@@ -28,6 +28,7 @@ router.post('/api/login', async(req, res) => {
         message: '密码错误！'
       })
     } else {
+      global.userId = info.userId
       res.json({
         code: 200,
         data: info,
