@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import MyCard from '@/components/MyCard';
 import { Button, message, Table, Modal } from 'antd';
-import { IStaff } from '@/common/types/interface';
 import { getStaffList, delStaff } from '@/api/staff';
 import AddOrEditStaff from './AddOrEditStaff';
 import { ColumnsType } from 'antd/lib/table';
+import { Key } from 'antd/lib/table/interface';
+
+export interface IStaff {
+  id: string;
+  name: string;
+  sex: number;
+  phone?: string;
+  perDiem: number;
+  age?: number;
+  project?: string;
+}
 
 const Staff: React.FC = () => {
-  const [selectionType] = useState<'checkbox'>('checkbox');
   const [loading, setLoading] = useState<boolean>(false);
   const [tableData, setTableData] = useState<IStaff[]>([]);
 
@@ -52,7 +61,8 @@ const Staff: React.FC = () => {
   }, [dialogVisible]);
 
   // 删除员工
-  const onDel = async (ids: string[]) => {
+  const [selectIds, setSelectIds] = useState<string[]>([]);
+  const onDel = async (ids: Key[]) => {
     Modal.confirm({
       title: ids.length > 1 ? '确定要删除选择的员工？' : '确定要删除该员工？',
       onOk: async () => {
@@ -63,6 +73,12 @@ const Staff: React.FC = () => {
       onCancel() {},
     });
   };
+
+  // 批量删除
+  const onBatchDel = () => {
+    onDel(selectIds);
+  };
+  
   const columns: ColumnsType<IStaff> = [
     {
       title: '姓名',
@@ -109,8 +125,8 @@ const Staff: React.FC = () => {
   ];
 
   const rowSelection = {
-    onChange: (selectedRowKeys: React.Key[], selectedRows: IStaff[]) => {
-      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+    onChange: (selectedRowKeys: Key[]) => {
+      setSelectIds(selectedRowKeys);
     },
     // getCheckboxProps: (record: DataType) => {
     //   return {
@@ -120,9 +136,14 @@ const Staff: React.FC = () => {
     // },
   };
   const addXML = (
-    <Button type="primary" onClick={onAdd}>
-      新增
-    </Button>
+    <>
+      <Button type="primary" onClick={onAdd}>
+        新增
+      </Button>
+      <Button onClick={onBatchDel}>
+        删除
+      </Button>
+    </>
   );
 
   return (
@@ -131,7 +152,7 @@ const Staff: React.FC = () => {
         <Table
           loading={loading}
           rowSelection={{
-            type: selectionType,
+            type: 'checkbox',
             ...rowSelection,
           }}
           columns={columns}

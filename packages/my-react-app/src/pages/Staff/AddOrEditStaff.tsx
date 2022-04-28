@@ -62,6 +62,7 @@ const AddOrEditStaff: React.FC<IAddOrEditStaffProps> = (props) => {
         form={form}
         onFinish={onFinish}
         preserve={false}
+        autoComplete="off"
       >
         <Form.Item label="姓名" name="name" rules={[{ required: true }]}>
           <Input />

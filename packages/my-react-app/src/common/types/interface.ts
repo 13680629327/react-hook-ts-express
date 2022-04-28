@@ -17,17 +17,6 @@ export interface IUser {
   [props: string]: any;
 }
 
-// 员工信息
-export interface IStaff {
-  name: string;
-  sex: number;
-  phone?: string;
-  perDiem: number;
-  age?: number;
-  project?: string;
-  [props: string]: any;
-}
-
 // reducer
 export interface IReducerAction {
   type: string;
