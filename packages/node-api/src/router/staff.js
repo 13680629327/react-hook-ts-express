@@ -21,7 +21,7 @@ router.get('/api/getStaffList', async (req, res) => {
 router.post('/api/addStaff', async (req, res) => {
   const staffList = await getFileData('staffData')
   for(let i = 0; i < staffList.length; i++) {
-    item = staffList[i]
+    let item = staffList[i]
     if (item.userId === global.userId) {
       // 判断员工是否存在
       const staffName = item.list.map(staff => staff.name)
@@ -53,7 +53,7 @@ router.post('/api/delStaff', async(req, res) => {
   const staffList = await getFileData('staffData')
   const ids = req.body.ids
   for(let i = 0; i < staffList.length; i++) {
-    item = staffList[i]
+    let item = staffList[i]
     if (item.userId === global.userId) {
       const newStaff = item.list.filter(item => !ids.includes(item.id))
       item.list = newStaff
@@ -73,7 +73,7 @@ router.post('/api/delStaff', async(req, res) => {
 router.post('/api/editStaff', async(req, res) => {
   const staffList = await getFileData('staffData')
   for(let i = 0; i < staffList.length; i++) {
-    item = staffList[i]
+    let item = staffList[i]
     if (item.userId === global.userId) {
       const newStaff = item.list.map(staff => {
         if (staff.id === req.body.id) {
