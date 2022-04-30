@@ -10,11 +10,15 @@
   },
   "scripts": {
     "start": "nodemon src/index.js",
-    "product": "pm2 restart src/index.js"
+    "product": "pm2 restart src/index.js",
+    "fix": "eslint src/  --fix"
   },
   "nodemonConfig": {
     "ignore": [
       "src/json/*"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.14.0"
   }
 }
