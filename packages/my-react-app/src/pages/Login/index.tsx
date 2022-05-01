@@ -21,11 +21,8 @@ const Login: React.FC = () => {
   useEffect(() => {
     form.setFieldsValue({ userName: 'Fengchengzhi', password: '123456' });
   }, []);
-  
-  const onLogin = async () => {
-    return login(form.getFieldsValue(true));
-  };
-  const { loading, run } = useRequest(onLogin, {
+
+  const { loading, run } = useRequest((formVal: any) => login(formVal), {
     manual: true,
     onSuccess: (res) => {
       message.success((res as any).message);
@@ -36,7 +33,7 @@ const Login: React.FC = () => {
       setTimeout(() => {
         history.push('/home');
       }, 1000);
-    }
+    },
   });
   // console.log(data);
   // const onFinish = async (formData: ILogin) => {
@@ -93,7 +90,13 @@ const Login: React.FC = () => {
             <Input.Password />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 10, span: 14 }}>
-            <Button type="primary" loading={loading} onClick={run}>
+            <Button
+              type="primary"
+              loading={loading}
+              onClick={() => {
+                run(form.getFieldsValue(true));
+              }}
+            >
               登录
             </Button>
           </Form.Item>
