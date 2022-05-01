@@ -1,7 +1,7 @@
 import http from './index';
 
 // 登录
-export const login = async (data = {}) => {
+export const login = (data = {}) => {
   return http.post('/api/login', data);
 };
 

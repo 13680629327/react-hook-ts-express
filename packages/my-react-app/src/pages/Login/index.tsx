@@ -19,10 +19,11 @@ const Login: React.FC = () => {
   const [form] = useForm<ILogin>();
 
   useEffect(() => {
+    // 设置默认参数
     form.setFieldsValue({ userName: 'Fengchengzhi', password: '123456' });
   }, []);
 
-  const { loading, run } = useRequest((formVal: any) => login(formVal), {
+  const { loading, run } = useRequest((formVal: ILogin) => login(formVal), {
     manual: true,
     onSuccess: (res) => {
       message.success((res as any).message);
@@ -33,28 +34,15 @@ const Login: React.FC = () => {
       setTimeout(() => {
         history.push('/home');
       }, 1000);
-    },
+    }
   });
-  // console.log(data);
-  // const onFinish = async (formData: ILogin) => {
-  //   try {
-  //     const res: any = await login(formData);
-  //     message.success(res.message);
-  //     localStorage.setItem('userInfo', JSON.stringify(res.data));
-  //     dispatch({
-  //       type: UserStoreActionType.SetData,
-  //       params: res.data,
-  //     });
-  //     setTimeout(() => {
-  //       history.push('/home');
-  //     }, 1000);
-  //   } catch (error) {
-  //     //
-  //   }
-  // };
+
+  const onFinish = (formData: ILogin) => {
+    run(formData);
+  };
 
   const onFinishFailed = () => {
-    // console.log('Failed:', errorInfo);
+    // throw new Error('请填写完整信息！');
   };
 
   // 注册
@@ -71,7 +59,7 @@ const Login: React.FC = () => {
           labelCol={{ span: 6 }}
           wrapperCol={{ span: 18 }}
           form={form}
-          // onFinish={onFinish}
+          onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
@@ -93,9 +81,7 @@ const Login: React.FC = () => {
             <Button
               type="primary"
               loading={loading}
-              onClick={() => {
-                run(form.getFieldsValue(true));
-              }}
+              htmlType="submit"
             >
               登录
             </Button>
