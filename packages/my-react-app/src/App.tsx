@@ -7,7 +7,7 @@ import { IUser, IReducerAction } from '@/common/types/interface';
 import { UserStoreActionType } from '@/common/types/enum';
 
 function App() {
-  const userReducer = (state: IUser, action: IReducerAction) => {
+  const myUserReducer = (state: IUser, action: IReducerAction): IUser => {
     const { type } = action;
     switch (type) {
       case UserStoreActionType.SetData:
@@ -19,7 +19,7 @@ function App() {
   };
   const userStorage = localStorage.getItem('userInfo') || '{}';
   const initialUserState = JSON.parse(userStorage);
-  const [store, dispatch] = useReducer(userReducer, initialUserState);
+  const [store, dispatch] = useReducer(myUserReducer, initialUserState);
   return (
     <UserContext.Provider value={{ store, dispatch }}>
       <BrowserRouter>
