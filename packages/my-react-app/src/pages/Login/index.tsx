@@ -1,10 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { LoginWrapper, LoginContainer } from './styled';
 import { Form, Input, Button, message } from 'antd';
 import { login } from '@/api/login';
 import { UserContext } from '@/store/user';
 import { UserStoreActionType } from '@/common/types/enum';
+import { useRequest } from 'ahooks';
+import { useForm } from 'antd/lib/form/Form';
 
 interface ILogin {
   userName: string;
@@ -14,11 +16,19 @@ interface ILogin {
 const Login: React.FC = () => {
   const history = useHistory();
   const { dispatch } = useContext(UserContext);
-  const onFinish = async (form: ILogin) => {
-    try {
-      const res: any = await login(form);
-      message.success(res.message);
-      localStorage.setItem('userInfo', JSON.stringify(res.data));
+  const [form] = useForm<ILogin>();
+
+  useEffect(() => {
+    form.setFieldsValue({ userName: 'Fengchengzhi', password: '123456' });
+  }, []);
+  
+  const onLogin = async () => {
+    return login(form.getFieldsValue(true));
+  };
+  const { loading, run } = useRequest(onLogin, {
+    manual: true,
+    onSuccess: (res) => {
+      message.success((res as any).message);
       dispatch({
         type: UserStoreActionType.SetData,
         params: res.data,
@@ -26,10 +36,25 @@ const Login: React.FC = () => {
       setTimeout(() => {
         history.push('/home');
       }, 1000);
-    } catch (error) {
-      //
     }
-  };
+  });
+  // console.log(data);
+  // const onFinish = async (formData: ILogin) => {
+  //   try {
+  //     const res: any = await login(formData);
+  //     message.success(res.message);
+  //     localStorage.setItem('userInfo', JSON.stringify(res.data));
+  //     dispatch({
+  //       type: UserStoreActionType.SetData,
+  //       params: res.data,
+  //     });
+  //     setTimeout(() => {
+  //       history.push('/home');
+  //     }, 1000);
+  //   } catch (error) {
+  //     //
+  //   }
+  // };
 
   const onFinishFailed = () => {
     // console.log('Failed:', errorInfo);
@@ -48,11 +73,8 @@ const Login: React.FC = () => {
           name="basic"
           labelCol={{ span: 6 }}
           wrapperCol={{ span: 18 }}
-          initialValues={{
-            userName: 'Fengchengzhi',
-            password: '123456',
-          }}
-          onFinish={onFinish}
+          form={form}
+          // onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
         >
@@ -71,7 +93,7 @@ const Login: React.FC = () => {
             <Input.Password />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 10, span: 14 }}>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" loading={loading} onClick={run}>
               登录
             </Button>
           </Form.Item>
