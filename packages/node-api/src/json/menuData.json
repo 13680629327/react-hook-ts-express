@@ -18,6 +18,12 @@
     "children": []
   },
   {
+    "title": "员工出勤",
+    "icon": null,
+    "path": "/attendance",
+    "children": []
+  },
+  {
     "title": "Option",
     "icon": null,
     "path": "/option",

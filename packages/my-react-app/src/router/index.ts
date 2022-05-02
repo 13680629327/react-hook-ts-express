@@ -4,6 +4,7 @@ import Login from '@/pages/Login';
 import Register from '@/pages/Register';
 import User from '@/pages/User';
 import Staff from '@/pages/Staff';
+import Attendance from '@/pages/Attendance';
 
 const routes: any = [
   {
@@ -34,6 +35,11 @@ const routes: any = [
       {
         path: '/staff',
         component: Staff,
+        routes: [],
+      },
+      {
+        path: '/attendance',
+        component: Attendance,
         routes: [],
       },
     ],
