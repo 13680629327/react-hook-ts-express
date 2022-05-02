@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Form, Input, Button, InputNumber, Radio, RadioChangeEvent, message } from 'antd';
+import { Form, Input, Button, InputNumber, Radio, message } from 'antd';
 import { RequiredMark } from 'antd/lib/form/Form';
 import { UserWrapper } from './styled';
 import { IUser } from '@/common/types/interface';
@@ -9,6 +9,7 @@ import { updateUserData } from '@/api/user';
 import MyCard from '@/components/MyCard';
 
 const User: React.FC = () => {
+  const [loading, setLoading] = useState(false);
   const [requiredMark, setRequiredMarkType] = useState<RequiredMark>(false);
   const { store, dispatch } = useContext(UserContext);
   const [form] = Form.useForm<IUser>();
@@ -21,14 +22,9 @@ const User: React.FC = () => {
     setRequiredMarkType(false);
     form.setFieldsValue({ ...store });
   };
-  const onChangeAge = (value: number) => {
-    form.setFieldsValue({ age: value });
-  };
-  const onChangeSex = (e: RadioChangeEvent) => {
-    form.setFieldsValue({ sex: e.target.value });
-  };
   const onFinish = async (fromData: IUser) => {
     try {
+      setLoading(true);
       const res: any = await updateUserData({ ...fromData, userId: store.userId });
       message.success(res.message);
       dispatch({
@@ -38,6 +34,8 @@ const User: React.FC = () => {
       setRequiredMarkType(false);
     } catch (error) {
       //
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -54,7 +52,7 @@ const User: React.FC = () => {
           <Button type="dashed" style={{ marginRight: '10px' }} onClick={onCancelModify}>
             取消
           </Button>
-          <Button type="primary" onClick={onSubmit}>
+          <Button type="primary" onClick={onSubmit} loading={loading}>
             提交修改
           </Button>
         </div>
@@ -91,7 +89,7 @@ const User: React.FC = () => {
             rules={[{ required: true, message: 'Please select your sex!' }]}
           >
             {requiredMark ? (
-              <Radio.Group onChange={onChangeSex} value={store.sex}>
+              <Radio.Group>
                 <Radio value="男">男</Radio>
                 <Radio value="女">女</Radio>
               </Radio.Group>
@@ -104,7 +102,7 @@ const User: React.FC = () => {
             name="age"
             rules={[{ required: false, message: 'Please input your age!' }]}
           >
-            {requiredMark ? <InputNumber min={1} max={200} onChange={onChangeAge} /> : store.age}
+            {requiredMark ? <InputNumber min={1} max={200} /> : store.age}
           </Form.Item>
           <Form.Item
             label="Mobile"
