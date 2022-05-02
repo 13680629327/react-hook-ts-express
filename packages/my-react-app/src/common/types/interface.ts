@@ -1,4 +1,8 @@
 // 接口返回参数
+
+import { UserStoreActionType } from "./enum";
+
+// import { UserStoreActionType } from '@/common/types/enum';
 export interface IRequest {
   code: number;
   data: any;
@@ -19,12 +23,7 @@ export interface IUser {
 
 // reducer
 export interface IReducerAction {
-  type: string;
+  type: UserStoreActionType;
   params?: any;
 }
 
-// createContext
-export interface ICreateContext {
-  store: any;
-  dispatch: any;
-}

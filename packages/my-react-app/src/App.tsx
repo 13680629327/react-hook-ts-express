@@ -17,8 +17,8 @@ function App() {
         return state;
     }
   };
-  const userStorage = localStorage.getItem('userInfo') || '{}';
-  const initialUserState = JSON.parse(userStorage);
+  const userStorage = localStorage.getItem('userInfo') || '';
+  const initialUserState = userStorage ? JSON.parse(userStorage) : null;
   const [store, dispatch] = useReducer(myUserReducer, initialUserState);
   return (
     <UserContext.Provider value={{ store, dispatch }}>
