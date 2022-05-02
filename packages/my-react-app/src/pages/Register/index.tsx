@@ -1,42 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { RegisterWrapper, RegisterContainer } from './styled';
-import { Form, Input, Button, message, InputNumber, Radio, RadioChangeEvent } from 'antd';
+import { Form, Input, Button, message, InputNumber, Radio } from 'antd';
 import { IUser } from '@/common/types/interface';
 import { register } from '@/api/register';
 import { useHistory } from 'react-router-dom';
+import { useRequest } from 'ahooks';
 
 const Login: React.FC = () => {
   const history = useHistory();
   const [form] = Form.useForm<IUser>();
-  const [userInfo, setUserInfo] = useState<IUser>({
-    userName: '',
-    password: '',
-    confirm: '',
-    sex: '男',
-    age: '',
-    mobile: '',
-    mailbox: '',
-  });
-  const onAgeChange = (value: number) => {
-    const params = { ...userInfo };
-    params.age = value;
-    setUserInfo(params);
-  };
-  const onSexChange = (e: RadioChangeEvent) => {
-    const params = { ...userInfo };
-    params.sex = e.target.value;
-    setUserInfo(params);
-  };
-  const onFinish = async (formData: IUser) => {
-    try {
-      const res: any = await register(formData);
-      message.success(res.message);
+
+  // 设置 form 默认参数
+  useEffect(() => {
+    form.setFieldsValue({ sex: '男' });
+  }, []);
+  const { loading, run } = useRequest((formVal: IUser) => register(formVal), {
+    manual: true,
+    onSuccess: (res) => {
+      message.success((res as any).message);
       setTimeout(() => {
         history.push('/login');
       }, 1000);
-    } catch (error) {
-      //
     }
+  });
+  const onFinish =  (formData: IUser) => {
+    run(formData);
   };
   const onFinishFailed = (errorInfo: any) => {
     console.log('Failed:', errorInfo);
@@ -50,7 +38,7 @@ const Login: React.FC = () => {
           name="basic"
           labelCol={{ span: 7 }}
           wrapperCol={{ span: 15 }}
-          initialValues={form}
+          form={form}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
@@ -97,7 +85,7 @@ const Login: React.FC = () => {
             name="sex"
             rules={[{ required: true, message: 'Please select your sex!' }]}
           >
-            <Radio.Group onChange={onSexChange} value={userInfo.sex}>
+            <Radio.Group>
               <Radio value="男">男</Radio>
               <Radio value="女">女</Radio>
             </Radio.Group>
@@ -107,7 +95,7 @@ const Login: React.FC = () => {
             name="age"
             rules={[{ required: false, message: 'Please input your age!' }]}
           >
-            <InputNumber min={1} max={200} onChange={onAgeChange} />
+            <InputNumber min={1} max={200} />
           </Form.Item>
           <Form.Item
             label="Mobile"
@@ -127,7 +115,7 @@ const Login: React.FC = () => {
             <Input />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 11, span: 13 }}>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" loading={loading}>
               注册
             </Button>
           </Form.Item>
