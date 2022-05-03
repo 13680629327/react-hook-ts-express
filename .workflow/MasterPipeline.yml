@@ -73,6 +73,7 @@ stages:
           # 请在此输入部署脚本，如启动Java应用如下
           # nohup java -jar test.jar > nohup.out &
           cd ~/gitee_go/deploy
+          rm -rf ~/web/react-app/build
           tar -zxvf output.tar.gz -C ~/web/react-app
 permissions:
   - role: admin
