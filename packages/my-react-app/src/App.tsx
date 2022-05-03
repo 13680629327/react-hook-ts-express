@@ -1,4 +1,4 @@
-import { useReducer } from 'react';
+import { Suspense, useReducer } from 'react';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import routes from './router';
@@ -23,7 +23,9 @@ function App() {
   return (
     <UserContext.Provider value={{ store, dispatch }}>
       <BrowserRouter>
-        <Switch>{renderRoutes(routes)}</Switch>
+        <Suspense fallback={<div> </div>}>
+          <Switch>{renderRoutes(routes)}</Switch>
+        </Suspense>
       </BrowserRouter>
     </UserContext.Provider>
   );

@@ -1,45 +1,39 @@
-import SystemFrame from '@/components/SystemFrame';
-import Home from '@/pages/Home';
-import Login from '@/pages/Login';
-import Register from '@/pages/Register';
-import User from '@/pages/User';
-import Staff from '@/pages/Staff';
-import Attendance from '@/pages/Attendance';
+import { lazy } from 'react';
 
 const routes: any = [
   {
     path: '/login',
-    component: Login,
+    component: lazy(() => import(/* webpackChunkName: 'Login' */ '@/pages/Login')),
     routes: [],
   },
   {
     path: '/register',
-    component: Register,
+    component: lazy(() => import(/* webpackChunkName: 'Register' */ '@/pages/Register')),
     routes: [],
   },
   {
     path: '/',
-    component: SystemFrame,
+    component: lazy(() => import(/* webpackChunkName: 'SystemFrame' */ '@/components/SystemFrame')),
     // exact: true,
     routes: [
       {
         path: '/home',
-        component: Home,
+        component: lazy(() => import(/* webpackChunkName: 'Home' */ '@/pages/Home')),
         routes: [],
       },
       {
         path: '/user',
-        component: User,
+        component: lazy(() => import(/* webpackChunkName: 'User' */ '@/pages/User')),
         routes: [],
       },
       {
         path: '/staff',
-        component: Staff,
+        component: lazy(() => import(/* webpackChunkName: 'Staff' */ '@/pages/Staff')),
         routes: [],
       },
       {
         path: '/attendance',
-        component: Attendance,
+        component: lazy(() => import(/* webpackChunkName: 'Attendance' */ '@/pages/Attendance')),
         routes: [],
       },
     ],
