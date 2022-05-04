@@ -1,5 +1,5 @@
 import { renderRoutes } from 'react-router-config';
-import React from 'react';
+import React, { Suspense } from 'react';
 import HeaderComps from '@/components/Header';
 import MenuComps from '@/components/Menu';
 import { SystemFrameWrapper } from './styled';
@@ -13,7 +13,11 @@ const SystemFrame: React.FC = (props: any) => {
         </div>
         <div className="system-frame-main-right">
           <HeaderComps />
-          <div className="page-main">{renderRoutes(props.route.routes)}</div>
+          <div className="page-main">
+            <Suspense fallback>
+              {renderRoutes(props.route.routes)}
+            </Suspense>
+          </div>
         </div>
       </div>
     </SystemFrameWrapper>

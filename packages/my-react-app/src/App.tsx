@@ -23,7 +23,7 @@ function App() {
   return (
     <UserContext.Provider value={{ store, dispatch }}>
       <BrowserRouter>
-        <Suspense fallback={<div> </div>}>
+        <Suspense fallback>
           <Switch>{renderRoutes(routes)}</Switch>
         </Suspense>
       </BrowserRouter>
